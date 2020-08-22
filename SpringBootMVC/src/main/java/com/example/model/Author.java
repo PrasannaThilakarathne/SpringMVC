@@ -45,6 +45,13 @@ public class Author {
 	public void setBook(Set<Book> book) {
 		this.book = book;
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", name=" + name + ", email=" + email + ", book=" + book + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

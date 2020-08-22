@@ -70,6 +70,14 @@ public class Book {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", category=" + category + ", Price=" + Price + ", author="
+				+ author + ", ISBN_Number=" + ISBN_Number + ", publisher=" + publisher + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
