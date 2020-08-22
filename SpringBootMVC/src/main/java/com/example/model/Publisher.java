@@ -7,27 +7,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Author {
+public class Publisher {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
+	private String address;
 	private String email;
-
+	
 	@OneToMany
-	private Set<Book> book = new HashSet<Book>();
+	@JoinColumn(name="publisher_id")
+	private Set<Book> books = new HashSet<Book>();
 
-	public Author() {
-		super();
+	public Publisher() {
 	}
 
-	public Author(String name, String email) {
-		this.name = name;
-		this.email = email;
+	public Set<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Set<Book> books) {
+		this.books = books;
 	}
 
 	public int getId() {
@@ -46,25 +51,20 @@ public class Author {
 		this.name = name;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Set<Book> getBook() {
-		return book;
-	}
-
-	public void setBook(Set<Book> book) {
-		this.book = book;
-	}
-
-	@Override
-	public String toString() {
-		return "Author [id=" + id + ", name=" + name + ", email=" + email + ", book=" + book + "]";
 	}
 
 	@Override
@@ -83,10 +83,15 @@ public class Author {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Author other = (Author) obj;
+		Publisher other = (Publisher) obj;
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Publisher [id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + "]";
 	}
 
 }
